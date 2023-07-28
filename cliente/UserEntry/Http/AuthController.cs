@@ -44,19 +44,18 @@ namespace cliente.UserEntry.Http
         [HttpPost]
         [Route("api/Registration")]
         [AllowAnonymous]
-        public async Task<IActionResult> Registration([FromBody] AutenticateUserDTO user)
+        public async Task<IActionResult> Registration([FromBody] RegistrationUserDTO user)
         {
             try
             {
-                var clientes = await _authApplication.Login(user);
-                return Ok(clientes);
+                var result = await _authApplication.Register(user);
+                return NoContent();
             }
             catch (Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
         }
-
 
         [HttpGet]
         [Route("anonymous")]
