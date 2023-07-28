@@ -7,5 +7,7 @@ namespace cliente.Core.Application.Auth.Interface
     public interface IAuthRepository
     {
         public Task<Account> GetUserAsync(AutenticateUserDTO login);
+
+        public Task<bool> RegisterAccount(RegistrationUserDTO user);
     }
 }

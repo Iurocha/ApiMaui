@@ -63,9 +63,20 @@ namespace cliente.Core.Application.Auth.Implementation
             return tokenHandler.WriteToken(token);
         }
 
-        public Task<dynamic> Register(RegistrationUserDTO user)
+        public async Task<dynamic> Register(RegistrationUserDTO user)
         {
-            throw new NotImplementedException();
+            var result = await _authRepository.RegisterAccount(user);
+
+            if (result == false)
+                return new
+                {
+                    result = "erro"
+                };
+
+            return new
+            {
+                result = "sucess"
+            };
         }
     }
 }
